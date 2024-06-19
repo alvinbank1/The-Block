@@ -8,6 +8,25 @@
 1. 인터넷 창에서 F12를 눌러 개발자 콘솔을 엽니다.
 2. CONSOLE 창으로 이동합니다.
 3. 아래 텍스트를 입력합니다.
-```import("https://github.com/alvinbank1/main.js")```
+```import("https://raw.githubusercontent.com/alvinbank1/The-Block/main/main.js")```
 4. 엔터 키를 누릅니다.
 5. 잠시 기다리면 코드가 실행됩니다.
+
+* 이 과정이 귀찮으시다면, 북마크를 추가해보는것은 어떤가요?
+
+# 빠르고 편리하게 실행
+
+* 크롬 기준.
+1. 오른쪽 상단 점 3개 클릭
+2. 북마크 및 목록 클릭
+3. 북마크 관리자 클릭
+4. 오른쪽 상단 점 3개 클릭
+5. 새 북마크 추가 클릭
+6. 이름란에 자신이 기억하기 쉬운 이름 (예시: ```The Block 간편 실행```)
+7. URL 란에 다음과 같이 입력
+   ```import("https://raw.githubusercontent.com/alvinbank1/The-Block/main/main.js")```
+8. 저장 클릭
+## 실행법
+1. 오른쪽 상단 점 3개 클릭
+2. 북마크 및 목록 클릭
+3. 아래 '북마크' 란에 위에 입력한 이름 찾아서 클릭
