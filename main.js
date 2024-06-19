@@ -764,7 +764,7 @@ const blocks = [
 	},
     {
 		name: 'TheBlock_RunCode_return',
-		template: '%1 Javascript 코드를 실행한 반환값 (비활성화)',
+		template: '%1 Javascript 코드를 실행한 반환값',
 		skeleton: 'basic_string_field',
 		color: {
 			default: '#ff0000',
