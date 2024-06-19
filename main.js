@@ -383,6 +383,18 @@ function copy(val) {
 		document.body.removeChild(dummy);
 	}
 }
+
+function clipboard(e) {
+    var clipboardData, pastedData;
+ 
+    // Get pasted data via clipboard API
+    clipboardData = window.clipboardData;
+    pastedData = clipboardData.getData('Text');
+    
+    // Do whatever with pasteddata
+    return(pastedData)
+}
+
 const blocks = [
 	{
 		name: 'TheBlock_Webblocks',
@@ -472,6 +484,180 @@ const blocks = [
 		func: async (sprite, script) => {
             location.href = script.getValue('WEBSITE', script)
 			return script.callReturn();
+		},
+	},
+    {
+		name: 'TheBlock_Copy',
+		template: '%1 복사하기 %2',
+		skeleton: 'basic',
+		color: {
+			default: '#15b01a',
+			darken: '#15b01a'
+		},
+		params: [
+			{
+				type: 'Block',
+				accept: 'string'
+			},
+			{
+				type: 'Indicator',
+				img: 'block_icon/start_icon_play.svg',
+				size: 11,
+			}
+		],
+		def: [
+			{
+				type: 'text',
+				params: ['안녕!']
+			},
+			null
+		],
+		map: {
+			COPY: 0
+		},
+		class: 'text',
+		func: async (sprite, script) => {
+            copy(script.getValue('COPY', script))
+			return script.callReturn();
+		},
+	},
+    {
+		name: 'TheBlock_Clipboard',
+		template: '클립보드 데이터',
+		skeleton: 'basic_string_field',
+		color: {
+			default: '#15b01a',
+			darken: '#15b01a'
+		},
+		class: 'text',
+		func: async (sprite, script) => {
+            try{
+                const text = await navigator.clipboard.readText();
+                return text
+            } catch {
+                return "undefined"
+            }
+
+		},
+	},
+    {
+		name: 'TheBlock_DangerBlocks',
+		template: '%1',
+		skeleton: 'basic_text',
+		color: {
+			default: EntryStatic.colorSet.common.TRANSPARENT,
+			darken: EntryStatic.colorSet.common.TRANSPARENT
+		},
+		params: [
+			{
+				type: 'Text',
+				text: '위험 블록',
+				color: EntryStatic.colorSet.common.TEXT,
+				align: 'center'
+			}
+		],
+		def: [],
+		map: {},
+		class: 'text'
+	},
+    {
+		name: 'TheBlock_DangerBlocks_desc',
+		template: '%1',
+		skeleton: 'basic_text',
+		color: {
+			default: EntryStatic.colorSet.common.TRANSPARENT,
+			darken: EntryStatic.colorSet.common.TRANSPARENT
+		},
+		params: [
+			{
+				type: 'Text',
+				text: '위험할 수 있는 블록입니다. 사용에 주의하세요.',
+				color: EntryStatic.colorSet.common.TEXT,
+				align: 'center'
+			}
+		],
+		def: [],
+		map: {},
+		class: 'text'
+	},
+    {
+		name: 'TheBlock_RunCode',
+		template: '%1 Javascript 코드 실행하기 %2',
+		skeleton: 'basic',
+		color: {
+			default: '#ff0000',
+			darken: '#ff0000'
+		},
+		params: [
+			{
+				type: 'Block',
+				accept: 'string'
+			},
+			{
+				type: 'Indicator',
+				img: 'block_icon/start_icon_play.svg',
+				size: 11,
+			}
+		],
+		def: [
+			{
+				type: 'text',
+				params: ['alert("안녕!")']
+			},
+			null
+		],
+		map: {
+			CODE: 0
+		},
+		class: 'text',
+		func: async (sprite, script) => {
+            try{
+                eval(script.getValue('CODE', script))
+            } 
+            catch (error){
+                alert("코드에 오류가 발생했습니다. 코드: "+ script.getValue('CODE', script) + ", 오류 메세지: "+ error)
+            }
+			return script.callReturn();
+		},
+	},
+    {
+		name: 'TheBlock_RunCode_return',
+		template: '%1 Javascript 코드를 실행한 반환값 %2',
+		skeleton: 'basic_string_field',
+		color: {
+			default: '#ff0000',
+			darken: '#ff0000'
+		},
+		params: [
+			{
+				type: 'Block',
+				accept: 'string'
+			},
+			{
+				type: 'Indicator',
+				img: 'block_icon/start_icon_play.svg',
+				size: 11,
+			}
+		],
+		def: [
+			{
+				type: 'text',
+				params: ['alert("안녕!")']
+			},
+			null
+		],
+		map: {
+			CODE: 0
+		},
+		class: 'text',
+		func: async (sprite, script) => {
+            try{
+                eval("var return_value = "+ script.getValue('CODE', script))
+            } 
+            catch (error){
+                alert("코드에 오류가 발생했습니다. 코드: "+ script.getValue('CODE', script) + ", 오류 메세지: "+ error)
+            }
+			return return_value;
 		},
 	},
 	{
