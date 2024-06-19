@@ -541,6 +541,19 @@ const blocks = [
 		},
 	},
     {
+		name: 'TheBlock_IsMobile',
+		template: '모바일인가?',
+		skeleton: 'basic_boolean_field',
+		color: {
+			default: '#15b01a',
+			darken: '#15b01a'
+		},
+		class: 'text',
+		func: async (sprite, script) => {
+            return /iPhone|iPad|iPod|Android/i.test(window.navigator.userAgent)
+		},
+	},
+    {
 		name: 'TheBlock_DangerBlocks',
 		template: '%1',
 		skeleton: 'basic_text',
@@ -611,18 +624,21 @@ const blocks = [
 		},
 		class: 'text',
 		func: async (sprite, script) => {
-            try{
-                eval(script.getValue('CODE', script))
-            } 
-            catch (error){
-                alert("코드에 오류가 발생했습니다. 코드: "+ script.getValue('CODE', script) + ", 오류 메세지: "+ error)
+            if (confirm("위험한 블록을 실행하려고 합니다. 실행하시겠습니까? (JS 코드: " +script.getValue('CODE', script) + ")" )) {
+                try{
+                    eval(script.getValue('CODE', script))
+                } 
+                catch (error){
+                    alert("코드에 오류가 발생했습니다. 코드: "+ script.getValue('CODE', script) + ", 오류 메세지: "+ error)
+                }
+                return script.callReturn();
             }
-			return script.callReturn();
+
 		},
 	},
     {
 		name: 'TheBlock_RunCode_return',
-		template: '%1 Javascript 코드를 실행한 반환값',
+		template: '%1 Javascript 코드를 실행한 반환값 (비활성화)',
 		skeleton: 'basic_string_field',
 		color: {
 			default: '#ff0000',
@@ -646,13 +662,16 @@ const blocks = [
 		},
 		class: 'text',
 		func: async (sprite, script) => {
-            try{
-                eval("const return_value = "+ script.getValue('CODE', script))
-            } 
-            catch (error){
-                alert("코드에 오류가 발생했습니다. 코드: "+ script.getValue('CODE', script) + ", 오류 메세지: "+ error)
-            }
-			return return_value;
+            if (confirm("위험한 블록을 실행하려고 합니다. 실행하시겠습니까? (JS 코드: " +script.getValue('CODE', script) + ")" )) {
+                try{
+                    eval("const return_value = "+ script.getValue('CODE', script))
+                } 
+                catch (error){
+                    alert("코드에 오류가 발생했습니다. 코드: "+ script.getValue('CODE', script) + ", 오류 메세지: "+ error)
+                    error("코드에 오류가 발생했습니다. 코드: "+ script.getValue('CODE', script) + ", 오류 메세지: "+ error) // 엔트리 오류용
+                }
+                return return_value;
+            }3
 		},
 	},
 	{
