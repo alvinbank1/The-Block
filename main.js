@@ -541,6 +541,19 @@ const blocks = [
 		},
 	},
     {
+		name: 'TheBlock_Time',
+		template: '현재 시간 (UNIX)',
+		skeleton: 'basic_string_field',
+		color: {
+			default: '#15b01a',
+			darken: '#15b01a'
+		},
+		class: 'text',
+		func: async (sprite, script) => {
+            return new Date().getTime()
+		},
+	},
+    {
 		name: 'TheBlock_IsMobile',
 		template: '모바일인가?',
 		skeleton: 'basic_boolean_field',
@@ -553,6 +566,119 @@ const blocks = [
             return /iPhone|iPad|iPod|Android/i.test(window.navigator.userAgent)
 		},
 	},
+    {
+		name: 'TheBlock_Calc',
+		template: '%1',
+		skeleton: 'basic_text',
+		color: {
+			default: EntryStatic.colorSet.common.TRANSPARENT,
+			darken: EntryStatic.colorSet.common.TRANSPARENT
+		},
+		params: [
+			{
+				type: 'Text',
+				text: '계산',
+				color: EntryStatic.colorSet.common.TEXT,
+				align: 'center'
+			}
+		],
+		def: [],
+		map: {},
+		class: 'text'
+	},
+    {
+		name: 'TheBlock_Calc_desc',
+		template: '%1',
+		skeleton: 'basic_text',
+		color: {
+			default: EntryStatic.colorSet.common.TRANSPARENT,
+			darken: EntryStatic.colorSet.common.TRANSPARENT
+		},
+		params: [
+			{
+				type: 'Text',
+				text: '계산 관련 블록입니다.',
+				color: EntryStatic.colorSet.common.TEXT,
+				align: 'center'
+			}
+		],
+		def: [],
+		map: {},
+		class: 'text'
+	},
+
+    {
+		name: 'TheBlock_jsonparse',
+		template: '%1 JSON 파싱한 값 %2 항목',
+		skeleton: 'basic_string_field',
+		color: {
+			default: '#ffe600',
+			darken: '#ffe600'
+		},
+		params: [
+			{
+				type: 'Block',
+				accept: 'string'
+			},
+            {
+				type: 'Block',
+				accept: 'string'
+			},
+		],
+		def: [
+			{
+				type: 'text',
+				params: ['{"안녕!":"엔트리"}']
+			},
+            {
+				type: 'text',
+				params: ['안녕!']
+			},
+			null
+		],
+		map: {
+			JSON: 0,
+            num: 1
+		},
+		class: 'text',
+		func: async (sprite, script) => {
+            return JSON.parse(script.getValue('JSON', script))[script.getValue('num', script)]
+		},
+	},
+    {
+		name: 'TheBlock_jsonstringify',
+		template: '%1 JSON을 텍스트로 변환한 값',
+		skeleton: 'basic_string_field',
+		color: {
+			default: '#ffe600',
+			darken: '#ffe600'
+		},
+		params: [
+			{
+				type: 'Block',
+				accept: 'string'
+			},
+            {
+				type: 'Block',
+				accept: 'string'
+			},
+		],
+		def: [
+			{
+				type: 'text',
+				params: ['이곳에는 일반 텍스트가 들어가는 것이 아닌 JSON 파싱한 JSON 개체가 들어가야 합니다.']
+			},
+			null
+		],
+		map: {
+			JSON: 0,
+		},
+		class: 'text',
+		func: async (sprite, script) => {
+            return JSON.stringify(script.getValue('JSON', script))
+		},
+	},
+
     {
 		name: 'TheBlock_DangerBlocks',
 		template: '%1',
@@ -671,7 +797,7 @@ const blocks = [
                     error("코드에 오류가 발생했습니다. 코드: "+ script.getValue('CODE', script) + ", 오류 메세지: "+ error) // 엔트리 오류용
                 }
                 return return_value;
-            }3
+            }
 		},
 	},
 	{
