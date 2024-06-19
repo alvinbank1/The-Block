@@ -791,12 +791,13 @@ const blocks = [
             if (confirm("위험한 블록을 실행하려고 합니다. 실행하시겠습니까? (JS 코드: " +script.getValue('CODE', script) + ")" )) {
                 try{
                     eval("const return_value = "+ script.getValue('CODE', script))
+                    return return_value;
                 } 
                 catch (error){
                     alert("코드에 오류가 발생했습니다. 코드: "+ script.getValue('CODE', script) + ", 오류 메세지: "+ error)
                     error("코드에 오류가 발생했습니다. 코드: "+ script.getValue('CODE', script) + ", 오류 메세지: "+ error) // 엔트리 오류용
+                    return("undefined")
                 }
-                return return_value;
             }
 		},
 	},
