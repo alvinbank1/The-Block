@@ -8,7 +8,7 @@
 1. 인터넷 창에서 F12를 눌러 개발자 콘솔을 엽니다.
 2. CONSOLE 창으로 이동합니다.
 3. 아래 텍스트를 입력합니다.
-```import("https://raw.githubusercontent.com/alvinbank1/The-Block/main/main.js")```
+```import("https://raw.githack.com/alvinbank1/The-Block/main/main.js")```
 4. 엔터 키를 누릅니다.
 5. 잠시 기다리면 코드가 실행됩니다.
 
@@ -24,7 +24,7 @@
 5. 새 북마크 추가 클릭
 6. 이름란에 자신이 기억하기 쉬운 이름 (예시: ```The Block 간편 실행```)
 7. URL 란에 다음과 같이 입력
-   ```import("https://raw.githubusercontent.com/alvinbank1/The-Block/main/main.js")```
+   ```import("https://raw.githack.com/alvinbank1/The-Block/main/main.js")```
 8. 저장 클릭
 ## 실행법
 1. 오른쪽 상단 점 3개 클릭
