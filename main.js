@@ -622,7 +622,7 @@ const blocks = [
 	},
     {
 		name: 'TheBlock_RunCode_return',
-		template: '%1 Javascript 코드를 실행한 반환값 %2',
+		template: '%1 Javascript 코드를 실행한 반환값',
 		skeleton: 'basic_string_field',
 		color: {
 			default: '#ff0000',
@@ -633,11 +633,6 @@ const blocks = [
 				type: 'Block',
 				accept: 'string'
 			},
-			{
-				type: 'Indicator',
-				img: 'block_icon/start_icon_play.svg',
-				size: 11,
-			}
 		],
 		def: [
 			{
@@ -652,7 +647,7 @@ const blocks = [
 		class: 'text',
 		func: async (sprite, script) => {
             try{
-                eval("var return_value = "+ script.getValue('CODE', script))
+                eval("const return_value = "+ script.getValue('CODE', script))
             } 
             catch (error){
                 alert("코드에 오류가 발생했습니다. 코드: "+ script.getValue('CODE', script) + ", 오류 메세지: "+ error)
