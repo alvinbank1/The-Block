@@ -1,0 +1,15 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 239 211" width="239" height="211">
+	<title>Entry</title>
+	<defs>
+		<image  width="239" height="211" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAO8AAADTCAMAAABeFrRdAAAAAXNSR0IB2cksfwAAAO1QTFRF////u+7QgOCpVtiRc8VmRNaILNF6HdB1lrE9/5EAmbE+MtJ9KdF5ONOAx/HZv8ZzibA5s6kvych6xrpZ0LxfzLtczbtdw7lXuMRvtOzL4cBq9/36/9afrOnEItB32r5laNuauLdQvKsz/+O/taownLJAsKkt58+P1bBC9NOYtLZNr7VKob9gragscrhJsevJf7pOVtiQX9qVD89xjrA6h+KusMJpwLhUvLhSr6kt69GRed+l0K4/zPLc78R0y8h63b9o1L1h1r1i2L5kzKEf1cuCa7hH3M2H2fXlStaKEs9y3/fpm+a7cd2goei/4SMZWQAABFBJREFUeJzt3ftLFFEUwPFzSzfBHtiiaWbZi6jsRUQ/SERF4D/cD/0m0sMUIuhd9jBMsiSwt1puO7vu7p2de+/MvbLDnMf3F8Gzs8yHcxdktyUFzlSU+yG5t1GpVIIvdmJUt6psKxx4vbReUt8CL3ZZ9qg12PEHoGc18Mk7V2nb17ALHd7yr7CnzKfe5aDL7N7+H6G3kk9hYKu32NuNCgLbvMXnhoEt3qIf5noBYLMXw3aj/MFGLxZuANjkxcP1Bxu8mLgAuz57PTzpxcX1BSe82Lie4HYvPq4fuM2LkesFjntxcn3AMS9WrgdY9+LlZgdrXszczOCWd1/oWyQFKRu46cW93ahM4IYXPzcbeNOL/TDXywCueylsNyodXPNS4QLs/JLygMhL4zDXSwNXvYMr+dxKPqW8AaBg6HfxPj7YSn2LrqkaXtkI//SpkJUXHEM1opaJeQfmHUM1uthFzDv4zjFU3aUtfJpayIbeOoaqF6h5Yf8b+4ygd3jOMSToPfDaMRQv+sSrJV70iVdLvOgTr5Z40SdeLfGiT7xa4kWfeLXEiz7xaokXfeLVEi/6xKslXvSJV0u86BOvlnjRJ14t8aJv5OdH+5CgFw6+tM8oeg+9sM8oemH0uXVE0uv4F6MkvXD4mW1C02sHE/XCkafm31P12jZM1msB0/WajzRhr3HDlL0mMGmv4UjT9iY3TNyb2DB1bzuYvLcNTN8bBzPwxsAcvDqYhVcD8/C2wEy8TTAXbwPMxrsJ5uOtgxl5a2BOXjj6hJf32Pf3rLxwXPHynuDl7Vnj9fpVf8d4eU8+ZOU9rWZZec/MsHr9nn3A6u+riMvIW+Py8Z6brv3g4q1vl413c7tcvE0uD2/jMAMPb2u7LLw6l4FXO8zAwBvbLn1vG5e6N36Ygbo3waXtTXJJe3cvJX9H2GvYLmWvabuEvWYuWa+FS9Vr4xL1Wrk0vfav45D0nv9g/8IkRa/rfwWi6L1wzz4j6OX2/V9u3+8Wr5Z40SdeLfGiT7xa4kWfeLXEiz7xaokXfeLVEi/6xKslXvSJV0u86BOvlnjRJ14t8aJPvFriRZ94tcSLPm7e4TnHkKAXygv2meou8fKOz3YR81684xgqVdpOzNu36Bgq6KV2nl3Hueq98ng1t1vJo0tTrqkCuDqT163k0eVJ57jqhWvTzoegamDePY+8hMBp3LoXrt/v/K3kUcphhoaXyIZTt9v0kthw+nZbXgLgLNyWF/2RzsTVvMg3nI2re1GDM3JjXsRHOis37kW74czcNi9ScHZuuxcl2IOb8CIE+3CTXnRgL67BiwzsxzV5UYE9uUYvIrAv1+xFA3a+FWnM7IUbjq+EFyd/rs2LYsMBXKsXwYa9X7tRVm/hwUFchzcCj98NvJnOF3KYwemFm2ry1Kuwu+lwG2Pl22FXurwwodQUrIU9cecq7e1/NHEr8GKntyruWhoMfOaO9WnoX6gW4D/rk1GQ1tZouAAAAABJRU5ErkJggg=="/>
+	</defs>
+	<style>
+		tspan { white-space:pre } 
+		.t0 { font-size: 150px;fill: #ffffff;font-weight: 700;font-family: "NotoSansKR-Bold", "Noto Sans KR" } 
+	</style>
+	<use id="Background" href="#img1" x="0" y="0"/>
+	<text id="TB" style="transform: matrix(1,0,0,1,-11,20)" >
+		<tspan x="21.6" y="135.2" class="t0">T</tspan><tspan  y="135.2" class="t0">B</tspan><tspan  y="135.2" class="t0">
+</tspan>
+	</text>
+</svg>
