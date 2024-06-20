@@ -1,4 +1,5 @@
-# The-Block
+# The Block
+![로고](https://raw.githack.com/alvinbank1/The-Block/main/Logo.svg)
 엔트리 추가 확장 기능
 
 ## 현재 보안등의 이유로 THE Block은 신뢰된 프로젝트에서만 사용하시길 바랍니다.
