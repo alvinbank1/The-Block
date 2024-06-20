@@ -1,0 +1,24 @@
+{
+    "name": "The Block (엔트리)",
+    "description": "The Block을 자동적으로 실행합니다.",
+    "version": "1.0",
+    "manifest_version": 3,
+    "content_scripts": [
+        {
+            "matches": ["https://*.playentry.org/*"],
+            "js": ["index.js","content-scripts.js","popup.js"],
+            "world": "MAIN"
+        }
+    ],
+    "content_security_policy": {
+        "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'; 'unsafe-inline'; 'sha256-xzCFSjIko5wZgQqcuCxDjlBf3xlOIwAWLFbYsGQWHUU=';"
+    },
+    "permissions": [
+        "activeTab",
+        "scripting"
+    ],
+    "action": {
+	  "default_title": "The Block (엔트리)",
+	  "default_popup": "popup.html"
+	}
+}
