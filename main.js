@@ -361,7 +361,7 @@ const LibraryCreator = {
 		if (Entry.getMainWS()) {
 			updateCategory(category);
 			// 아이콘 적용
-			$('head').append(`<style>#entryCategory${category}{background-image:url(https://raw.githack.com/entry62045/entryjs/main/images/icon.svg);background-repeat:no-repeat;margin-bottom:1px;background-position-y: 10px;background-size: 20px;}.entrySelectedCategory#entryCategory${category}{background-image:url(https://raw.githack.com/entry62045/entryjs/main/images/icon_selected.svg);background-color:#FA6F23;border-color:##FA6F23;color:#fff}</style>`);
+			$('head').append(`<style>#entryCategory${category}{background-image:url(https://raw.githack.com/alvinbank1/The-Block/main/Logo.png);background-repeat:no-repeat;margin-bottom:1px;background-position-y: 10px;background-size: 20px;}.entrySelectedCategory#entryCategory${category}{background-image:url(https://raw.githack.com/alvinbank1/The-Block/main/Selected_Logo.png);background-color:#ff8a00;border-color:##ff8a00;color:#fff}</style>`);
 			// 카테고리 이름 적용;
 			$(`#entryCategory${category}`).append(text);
 		}
@@ -837,7 +837,7 @@ const blocks = [
 			},
 		],
 		def: [
-			{
+			{	
 				type: 'text',
 				params: ['{"안녕!":"엔트리"}']
 			},
