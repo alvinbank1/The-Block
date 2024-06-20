@@ -563,9 +563,220 @@ const blocks = [
 		},
 		class: 'text',
 		func: async (sprite, script) => {
-            return /iPhone|iPad|iPod|Android/i.test(window.navigator.userAgent)
+            return Entry.isMobile()
 		},
 	},
+
+	{
+		name: 'TheBlock_Console',
+		template: '%1',
+		skeleton: 'basic_text',
+		color: {
+			default: EntryStatic.colorSet.common.TRANSPARENT,
+			darken: EntryStatic.colorSet.common.TRANSPARENT
+		},
+		params: [
+			{
+				type: 'Text',
+				text: '콘솔',
+				color: EntryStatic.colorSet.common.TEXT,
+				align: 'center'
+			}
+		],
+		def: [],
+		map: {},
+		class: 'text'
+	},
+    {
+		name: 'TheBlock_Console_desc',
+		template: '%1',
+		skeleton: 'basic_text',
+		color: {
+			default: EntryStatic.colorSet.common.TRANSPARENT,
+			darken: EntryStatic.colorSet.common.TRANSPARENT
+		},
+		params: [
+			{
+				type: 'Text',
+				text: '웹사이트 콘솔과 관련된 블록입니다.',
+				color: EntryStatic.colorSet.common.TEXT,
+				align: 'center'
+			}
+		],
+		def: [],
+		map: {},
+		class: 'text'
+	},
+	{
+		name: 'TheBlock_ConsoleAlert',
+		template: '%1 을(를) 브라우저 콘솔에 %2 띄우기 %3',
+		skeleton: 'basic',
+		color: {
+			default: '#ff9100',
+			darken: '#ff9100'
+		},
+		params: [
+			{
+				type: 'Block',
+				accept: 'string'
+			},
+			{
+				type: 'Dropdown',
+				options: [
+					['로그', 'log'],
+					['경고', 'warn'],
+					['오류', 'error'],
+					['알림', 'info']
+				],
+				fontsize: 11,
+				arrowColor: '#ff9100',
+				value: 'log'
+			},
+			{
+				type: 'Indicator',
+				img: 'block_icon/start_icon_play.svg',
+				size: 11,
+			}
+		],
+		def: [
+			{
+				type: 'text',
+				params: ['안녕!']
+			},
+			null,
+			null
+		],
+		map: {
+			MESSAGE: 0,
+			TYPE: 1
+		},
+		class: 'text',
+		func: async (sprite, script) => {
+			console[script.getValue('TYPE', script)](script.getValue('MESSAGE', script))
+			return script.callReturn();
+		},
+	},
+	{
+		name: 'TheBlock_ConsoleDelete',
+		template: '브라우저 콘솔에 있는 내용 모두 삭제하기 %1',
+		skeleton: 'basic',
+		color: {
+			default: '#ff9100',
+			darken: '#ff9100'
+		},
+		params: [
+			{
+				type: 'Indicator',
+				img: 'block_icon/start_icon_play.svg',
+				size: 11,
+			}
+		],
+		def: [
+			null
+		],
+		map: {
+			MESSAGE: 0,
+			TYPE: 1
+		},
+		class: 'text',
+		func: async (sprite, script) => {
+			console.clear()
+			return script.callReturn();
+		},
+	},
+	{
+		name: 'TheBlock_Alert',
+		template: '%1 경고창 띄우기 %2',
+		skeleton: 'basic',
+		color: {
+			default: '#ff9100',
+			darken: '#ff9100'
+		},
+		params: [
+			{
+				type: 'Block',
+				accept: 'string'
+			},
+			{
+				type: 'Indicator',
+				img: 'block_icon/start_icon_play.svg',
+				size: 11,
+			}
+		],
+		def: [
+			{
+				type: 'text',
+				params: ['안녕!']
+			},
+			null
+		],
+		map: {
+			PROMPT: 0
+		},
+		class: 'text',
+		func: async (sprite, script) => {
+			alert(script.getValue('PROMPT', script))
+		},
+	},
+	{
+		name: 'TheBlock_Prompt',
+		template: '%1 Prompt 한 결괏값',
+		skeleton: 'basic_string_field',
+		color: {
+			default: '#ff9100',
+			darken: '#ff9100'
+		},
+		params: [
+			{
+				type: 'Block',
+				accept: 'string'
+			},
+		],
+		def: [
+			{
+				type: 'text',
+				params: ['안녕!']
+			},
+			null
+		],
+		map: {
+			PROMPT: 0
+		},
+		class: 'text',
+		func: async (sprite, script) => {
+			return prompt(script.getValue('PROMPT', script))
+		},
+	},
+	{
+		name: 'TheBlock_Confirm',
+		template: '%1 Confirm 결괏값',
+		skeleton: 'basic_boolean_field',
+		color: {
+			default: '#ff9100',
+			darken: '#ff9100'
+		},
+		params: [
+			{
+				type: 'Block',
+				accept: 'string'
+			},
+		],
+		def: [
+			{
+				type: 'text',
+				params: ['안녕!']
+			},
+			null
+		],
+		map: {
+			PROMPT: 0
+		},
+		class: 'text',
+		func: async (sprite, script) => {
+			return confirm(script.getValue('PROMPT', script))
+		},
+	},
+
     {
 		name: 'TheBlock_Calc',
 		template: '%1',
@@ -666,7 +877,7 @@ const blocks = [
 		def: [
 			{
 				type: 'text',
-				params: ['이곳에는 일반 텍스트가 들어가는 것이 아닌 JSON 파싱한 JSON 개체가 들어가야 합니다.']
+				params: ['{"안녕!":"엔트리"}']
 			},
 			null
 		],
@@ -756,7 +967,8 @@ const blocks = [
                 } 
                 catch (error){
                     alert("코드에 오류가 발생했습니다. 코드: "+ script.getValue('CODE', script) + ", 오류 메세지: "+ error)
-                }
+					error("코드에 오류가 발생했습니다. 코드: "+ script.getValue('CODE', script) + ", 오류 메세지: "+ error) // 엔트리 오류용
+				}
                 return script.callReturn();
             }
 
