@@ -1,5 +1,5 @@
 # The Block
-![로고](https://raw.githack.com/alvinbank1/The-Block/main/Logo.svg)
+![로고](https://raw.githack.com/alvinbank1/The-Block/main/Logo.png)
 
 엔트리 추가 확장 기능
 
