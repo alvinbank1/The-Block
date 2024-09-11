@@ -1,3 +1,5 @@
+let conf = false
+
 try {
 	Entry.getMainWS();
 }
@@ -889,7 +891,6 @@ const blocks = [
             return JSON.stringify(script.getValue('JSON', script))
 		},
 	},
-
     {
 		name: 'TheBlock_DangerBlocks',
 		template: '%1',
@@ -930,6 +931,64 @@ const blocks = [
 		map: {},
 		class: 'text'
 	},
+	{
+		name: 'TheBlock_QuestionJSCode',
+		template: 'Javascript 경고 띄우지 않게 물어보기 %1',
+		skeleton: 'basic',
+		color: {
+			default: '#ff0000',
+			darken: '#ff0000'
+		},
+		params: [
+			{
+				type: 'Indicator',
+				img: 'block_icon/start_icon_play.svg',
+				size: 11,
+			}
+		],
+		def: [
+			null
+		],
+		map: {
+			CODE: 0
+		},
+		class: 'text',
+		func: async (sprite, script) => {
+            if (confirm("이 프로젝트에서 Javascript 코드를 묻지 않고 실행할까요? (신뢰된 프로젝트에서만 확인 버튼을 누르세요)" )) {
+                conf = true
+                return script.callReturn();
+            } else{
+				conf = false
+			}
+
+		},
+	},
+	{
+		name: 'TheBlock_QuestionJSCodeBool',
+		template: 'Javascript 경고가 표시되지 않는가?',
+		skeleton: 'basic_boolean_field',
+		color: {
+			default: '#ff0000',
+			darken: '#ff0000'
+		},
+		params: [
+			{
+				type: 'Indicator',
+				img: 'block_icon/start_icon_play.svg',
+				size: 11,
+			}
+		],
+		def: [
+			null
+		],
+		map: {
+			CODE: 0
+		},
+		class: 'text',
+		func: async (sprite, script) => {
+			return conf
+		},
+	},
     {
 		name: 'TheBlock_RunCode',
 		template: '%1 Javascript 코드 실행하기 %2',
@@ -961,16 +1020,28 @@ const blocks = [
 		},
 		class: 'text',
 		func: async (sprite, script) => {
-            if (confirm("위험한 블록을 실행하려고 합니다. 실행하시겠습니까? (JS 코드: " +script.getValue('CODE', script) + ")" )) {
-                try{
-                    eval(script.getValue('CODE', script))
-                } 
-                catch (error){
-                    alert("코드에 오류가 발생했습니다. 코드: "+ script.getValue('CODE', script) + ", 오류 메세지: "+ error)
+			if (conf){
+				try{
+					eval(script.getValue('CODE', script))
+				} 
+				catch (error){
+					alert("코드에 오류가 발생했습니다. 코드: "+ script.getValue('CODE', script) + ", 오류 메세지: "+ error)
 					error("코드에 오류가 발생했습니다. 코드: "+ script.getValue('CODE', script) + ", 오류 메세지: "+ error) // 엔트리 오류용
 				}
-                return script.callReturn();
-            }
+				return script.callReturn();
+			} else{
+				if (confirm("위험한 블록을 실행하려고 합니다. 실행하시겠습니까? (JS 코드: " +script.getValue('CODE', script) + ")" )) {
+					try{
+						eval(script.getValue('CODE', script))
+					} 
+					catch (error){
+						alert("코드에 오류가 발생했습니다. 코드: "+ script.getValue('CODE', script) + ", 오류 메세지: "+ error)
+						error("코드에 오류가 발생했습니다. 코드: "+ script.getValue('CODE', script) + ", 오류 메세지: "+ error) // 엔트리 오류용
+					}
+					return script.callReturn();
+				}
+			}
+            
 
 		},
 	},
@@ -1000,17 +1071,82 @@ const blocks = [
 		},
 		class: 'text',
 		func: async (sprite, script) => {
-            if (confirm("위험한 블록을 실행하려고 합니다. 실행하시겠습니까? (JS 코드: " +script.getValue('CODE', script) + ")" )) {
-                try{
-                    eval("const return_value = "+ script.getValue('CODE', script))
-                    return return_value;
-                } 
-                catch (error){
-                    alert("코드에 오류가 발생했습니다. 코드: "+ script.getValue('CODE', script) + ", 오류 메세지: "+ error)
-                    error("코드에 오류가 발생했습니다. 코드: "+ script.getValue('CODE', script) + ", 오류 메세지: "+ error) // 엔트리 오류용
-                    return("undefined")
-                }
-            }
+			if (conf){
+				try{
+					var result = new Function(script.getValue('CODE', script))();
+					return result;
+			} 
+				catch (error){
+					alert("코드에 오류가 발생했습니다. 코드: "+ script.getValue('CODE', script) + ", 오류 메세지: "+ error)
+					error("코드에 오류가 발생했습니다. 코드: "+ script.getValue('CODE', script) + ", 오류 메세지: "+ error) // 엔트리 오류용
+					return("undefined")
+				}
+			} else{
+				if (confirm("위험한 블록을 실행하려고 합니다. 실행하시겠습니까? (JS 코드: " +script.getValue('CODE', script) + ")" )) {
+					try{
+						var result = new Function(script.getValue('CODE', script))();
+						return result;
+					} 
+					catch (error){
+						alert("코드에 오류가 발생했습니다. 코드: "+ script.getValue('CODE', script) + ", 오류 메세지: "+ error)
+						error("코드에 오류가 발생했습니다. 코드: "+ script.getValue('CODE', script) + ", 오류 메세지: "+ error) // 엔트리 오류용
+						return("undefined")
+					}
+				}
+			}
+            
+		},
+	},
+	{
+		name: 'TheBlock_RunCode_return_bool',
+		template: '%1 Javascript 코드를 실행한 반환값',
+		skeleton: 'basic_boolean_field',
+		color: {
+			default: '#ff0000',
+			darken: '#ff0000'
+		},
+		params: [
+			{
+				type: 'Block',
+				accept: 'string'
+			},
+		],
+		def: [
+			{
+				type: 'text',
+				params: ['alert("안녕!")']
+			},
+			null
+		],
+		map: {
+			CODE: 0
+		},
+		class: 'text',
+		func: async (sprite, script) => {
+			if (conf){
+				try{
+					var result = new Function(script.getValue('CODE', script))();
+					return result;
+			} 
+				catch (error){
+					alert("코드에 오류가 발생했습니다. 코드: "+ script.getValue('CODE', script) + ", 오류 메세지: "+ error)
+					error("코드에 오류가 발생했습니다. 코드: "+ script.getValue('CODE', script) + ", 오류 메세지: "+ error) // 엔트리 오류용
+					return("undefined")
+				}
+			} else{
+				if (confirm("위험한 블록을 실행하려고 합니다. 실행하시겠습니까? (JS 코드: " +script.getValue('CODE', script) + ")" )) {
+					try{
+						var result = new Function(script.getValue('CODE', script))();
+						return result;
+					} 
+					catch (error){
+						alert("코드에 오류가 발생했습니다. 코드: "+ script.getValue('CODE', script) + ", 오류 메세지: "+ error)
+						error("코드에 오류가 발생했습니다. 코드: "+ script.getValue('CODE', script) + ", 오류 메세지: "+ error) // 엔트리 오류용
+						return("undefined")
+					}
+				}
+			}
+            
 		},
 	},
 	{
